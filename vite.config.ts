@@ -12,7 +12,8 @@ export default defineConfig({
     },
   },
   preview: {
-    host: true, // Ensures accessibility in Coolify
-    port: 4173, // Use the same port as before
+    host: true, // Binds to 0.0.0.0
+    port: 4173, // Ensures the correct port
+    allowedHosts: ["gkks0gc4c4g4gc4soo0osg08.193.46.198.43.sslip.io"], // Add the host dynamically assigned by Coolify
   },
-})
+});
