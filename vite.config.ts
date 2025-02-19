@@ -11,4 +11,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  preview: {
+    host: true, // Ensures accessibility in Coolify
+    port: 4173, // Use the same port as before
+  },
 })
