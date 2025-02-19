@@ -8,7 +8,6 @@ export const usePlayers = () => {
     const { showToastError } = toastError();
     const [players, setPlayers] = useState<Player[]>([]);
     const [activePlayers, setActivePlayers] = useState<Player[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
     const token = localStorage.getItem("PadelToken");
 
     const getAllPlayers = async () => {
@@ -73,7 +72,6 @@ export const usePlayers = () => {
     return {
         players,
         activePlayers,
-        loading,
         getAllPlayers,
         getActivePlayers,
         createPlayer,

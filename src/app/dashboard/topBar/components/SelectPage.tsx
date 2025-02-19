@@ -1,5 +1,4 @@
 import {
-  Settings,
   Trophy,
   Users,
   Medal,

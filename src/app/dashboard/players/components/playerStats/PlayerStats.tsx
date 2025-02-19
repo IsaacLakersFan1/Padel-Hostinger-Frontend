@@ -104,7 +104,7 @@ const StatsCard = ({
             strokeWidth={5}
           >
             <Label
-              content={({ viewBox, ...props }) => (
+              content={({ viewBox }) => (
                 <PieChartLabel viewBox={viewBox} totalMatches={totalMatches} />
               )}
             />
