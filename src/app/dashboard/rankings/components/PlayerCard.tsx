@@ -30,7 +30,7 @@ export const PlayerCard = ({
       <div className="flex flex-col text-sm justify-center">
         <div className="flex items-center gap-2 justify-center">
         <img
-          src={`/public/${playerStats.player.imageUrl}.jpeg`}
+          src={`/${playerStats.player.imageUrl}.jpeg`}
           alt="Player Image"
           className="w-12 h-12 rounded-full"
         />
