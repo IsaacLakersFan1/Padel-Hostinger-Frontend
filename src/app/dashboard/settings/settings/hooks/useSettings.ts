@@ -44,7 +44,6 @@ export const useSettings = () => {
     //         setIsDownloading(false);
     //     }
     // };
-
     const downloadDB = async () => {
         setIsDownloading(true);
         try {
@@ -56,32 +55,16 @@ export const useSettings = () => {
     
             if (!response.ok) throw new Error("Failed to download");
     
-            // Get filename from Content-Disposition header (if available)
-            const contentDisposition = response.headers.get("Content-Disposition");
-            let fileName = "database.db"; // Default filename
-    
-            if (contentDisposition) {
-                const match = contentDisposition.match(/filename="?(.+?)"?$/);
-                if (match && match[1]) {
-                    fileName = match[1];
-                }
-            }
-    
-            // 🔹 Force `.db` extension if missing
-            if (!fileName.endsWith(".db")) {
-                fileName += ".db";
-            }
-    
             const blob = await response.blob();
             console.log("Downloaded Blob:", blob);
     
             const url = window.URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.setAttribute("download", fileName); // Ensure correct filename
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+    
+            // Open in new tab to bypass iframe restrictions
+            const newTab = window.open(url, "_blank");
+            if (!newTab) {
+                throw new Error("Failed to open download in a new tab. Pop-ups might be blocked.");
+            }
     
             setTimeout(() => {
                 window.URL.revokeObjectURL(url);
@@ -94,6 +77,7 @@ export const useSettings = () => {
             setIsDownloading(false);
         }
     };
+    
     
     
     
