@@ -18,7 +18,7 @@ import {
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Player } from "@/app/dashboard/players/interfaces/player";
 
 export const AddTeammate = (props: AddTeammateProps) => {
@@ -32,10 +32,7 @@ export const AddTeammate = (props: AddTeammateProps) => {
     randomPlayer,
   } = props;
   const [selectedPlayer, setSelectedPlayer] = useState<Player>();
-
-  useEffect(() => {
-    getPossibleTeammates(matchId);
-  }, []);
+  const [open, setOpen] = useState(false);
 
   const handleAddRandomPlayer = () => {
     addRandomPlayer(possibleTeammates);
@@ -43,9 +40,15 @@ export const AddTeammate = (props: AddTeammateProps) => {
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="success" className="w-24 h-8">
+        <Button 
+          variant="success" 
+          className="w-24 h-8"
+          onClick={() => {
+            getPossibleTeammates(matchId);
+          }}
+        >
           <h1 className="text-xs">Add Teammate</h1>
         </Button>
       </DialogTrigger>
