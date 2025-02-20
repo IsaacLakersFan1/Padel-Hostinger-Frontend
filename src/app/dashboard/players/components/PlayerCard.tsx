@@ -10,10 +10,14 @@ export const PlayerCard = ({ player, onStatusChange }: PlayerCardType & { onStat
   return (
     <div className="flex flex-col items-center justify-center border border-gray-300 rounded-md p-4 m-2 w-72 ">
       <section className="flex items-center justify-center gap-4">
-        <img
+      <img
           src={`../../../../../../../public/${player.imageUrl}.jpeg`}
-          alt="Player Image"
+          alt={player.name}
           className="w-16 h-16 rounded-full"
+          onError={(e) => {
+            e.currentTarget.onerror = null; // Prevent infinite loop
+            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+          }}
         />
         {!isChangingStatus && (
           <Button onClick={() => handleChangeStatus()} variant={player.status === "active" ? "success" : "destructive"} className="w-20 h-12">

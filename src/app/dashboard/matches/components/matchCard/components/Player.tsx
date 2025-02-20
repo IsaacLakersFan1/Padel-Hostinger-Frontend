@@ -18,11 +18,15 @@ export const Player = (props: PlayerProps) => {
     <div className="flex items-center gap-2">
       {playerName && (playerNumber === 1 || playerNumber === 2) && (
         <>
-          <img
-            src={`../../../../../public/${playerName}.jpeg`}
-            alt="Image of the player"
-            className="w-10 h-10 rounded-full"
-          />
+        <img
+          src={`../../../../../../../public/${playerName}.jpeg`}
+          alt={playerName}
+          className="w-16 h-16 rounded-full"
+          onError={(e) => {
+            e.currentTarget.onerror = null; // Prevent infinite loop
+            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+          }}
+        />
           <h2>{playerName}</h2>
         </>
       )}
@@ -30,10 +34,14 @@ export const Player = (props: PlayerProps) => {
         <>
           <h2>{playerName}</h2>
           <img
-            src={`../../../../../public/${playerName}.jpeg`}
-            alt="Image of the player"
-            className="w-10 h-10 rounded-full"
-          />
+          src={`../../../../../../../public/${playerName}.jpeg`}
+          alt={playerName}
+          className="w-16 h-16 rounded-full"
+          onError={(e) => {
+            e.currentTarget.onerror = null; // Prevent infinite loop
+            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+          }}
+        />
         </>
       )}
       {!playerName && gameModeId === 1 && playerNumber && (

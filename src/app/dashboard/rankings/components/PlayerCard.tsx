@@ -30,9 +30,13 @@ export const PlayerCard = ({
       <div className="flex flex-col text-sm justify-center">
         <div className="flex items-center gap-2 justify-center">
         <img
-          src={`/public/${playerStats.player.imageUrl}.jpeg`}
-          alt="Player Image"
-          className="w-12 h-12 rounded-full"
+          src={`../../../../../../../public/${playerStats.player.imageUrl}.jpeg`}
+          alt={playerStats.player.name}
+          className="w-16 h-16 rounded-full"
+          onError={(e) => {
+            e.currentTarget.onerror = null; // Prevent infinite loop
+            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+          }}
         />
         <h1 className="text-lg font-bold">{playerStats.player.name}</h1>
         </div>

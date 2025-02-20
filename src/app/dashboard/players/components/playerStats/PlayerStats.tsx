@@ -222,10 +222,14 @@ export const PlayerStats = () => {
             {playerStats.player.name}
           </h1>
           <img
-            src={`../../../../../../public/${playerStats.player.name}.jpeg`}
-            alt={playerStats.player.name}
-            className="w-54 h-54 rounded-full mx-auto mb-6"
-          />
+          src={`../../../../../../../public/${playerStats.player.imageUrl}.jpeg`}
+          alt={playerStats.player.name}
+          className="w-54 h-54 rounded-full mx-auto mb-6"
+          onError={(e) => {
+            e.currentTarget.onerror = null; // Prevent infinite loop
+            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+          }}
+        />
         </div>
       </div>
 

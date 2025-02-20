@@ -93,10 +93,14 @@ export const AddTeammate = (props: AddTeammateProps) => {
             <div className="flex items-center gap-2 justify-center mt-4">
               <p className="text-2xl font-bold">{selectedPlayer?.name}</p>
               <img
-                src={`../../../../../public/${selectedPlayer?.name}.jpeg`}
-                alt="Player"
-                className="w-18 h-18 rounded-full"
-              />
+          src={`../../../../../../../public/${selectedPlayer.imageUrl}.jpeg`}
+          alt={selectedPlayer.name}
+          className="w-16 h-16 rounded-full"
+          onError={(e) => {
+            e.currentTarget.onerror = null; // Prevent infinite loop
+            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+          }}
+        />
             </div>
           )}
         </div>

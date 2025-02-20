@@ -50,9 +50,13 @@ export const WinnerButton = (props: WinnerButtonProps) => {
             <div className="flex items-center gap-2 justify-center w-full">
               <DialogTitle className="flex items-center gap-2 justify-center">
                 <img
-                  src={`../../../../../public/${playerName1}.jpeg`}
-                  alt=""
-                  className="w-10 h-10 rounded-full"
+                  src={`../../../../../../../public/${playerName1}.jpeg`}
+                  alt={playerName1}
+                  className="w-16 h-16 rounded-full"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null; // Prevent infinite loop
+                    e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+                  }}
                 />
                 {playerName1}
               </DialogTitle>
@@ -60,9 +64,13 @@ export const WinnerButton = (props: WinnerButtonProps) => {
             <div className="flex items-center gap-2 justify-center w-full">
               <DialogTitle className="flex items-center gap-2 justify-center">
                 <img
-                  src={`../../../../../public/${playerName2}.jpeg`}
-                  alt=""
-                  className="w-10 h-10 rounded-full"
+                  src={`../../../../../../../public/${playerName2}.jpeg`}
+                  alt={playerName2}
+                  className="w-16 h-16 rounded-full"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null; // Prevent infinite loop
+                    e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+                  }}
                 />
                 {playerName2}
               </DialogTitle>
