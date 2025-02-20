@@ -7,43 +7,6 @@ export const useSettings = () => {
     const token = localStorage.getItem("PadelToken");
     
 
-    // const downloadDB = async () => {
-    //     setIsDownloading(true);
-    //     try {
-    //         const response = await axios.get(`${API_URL}/api/settings/download-db`, {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             },
-    //             responseType: "blob" // This is correct for binary data
-    //         });
-    
-    //         console.log("Downloaded file:", response);
-    //         console.log("Response size:", response.data.size);
-    
-    //         if (!response.data || response.data.size === 0) {
-    //             showToastError("The downloaded file is empty.");
-    //             return;
-    //         }
-    
-    //         const blob = new Blob([response.data], { type: "application/x-sqlite3" }); // Use SQLite-specific MIME type
-    //         const url = window.URL.createObjectURL(blob);
-            
-    //         const a = document.createElement("a");
-    //         a.href = url;
-    //         a.download = "database.db";
-    //         document.body.appendChild(a);
-    //         a.click();
-    //         document.body.removeChild(a);
-    
-    //         window.URL.revokeObjectURL(url); // Clean up memory
-    
-    //     } catch (error) {
-    //         showToastError("Error downloading the database");
-    //         console.error("Download error:", error);
-    //     } finally {
-    //         setIsDownloading(false);
-    //     }
-    // };
     const downloadDB = async () => {
         setIsDownloading(true);
         try {
@@ -59,12 +22,27 @@ export const useSettings = () => {
             console.log("Downloaded Blob:", blob);
     
             const url = window.URL.createObjectURL(blob);
+            
+            // Ensure a correct filename
+            const contentDisposition = response.headers.get("Content-Disposition");
+            let fileName = "database.db";
     
-            // Open in new tab to bypass iframe restrictions
-            const newTab = window.open(url, "_blank");
-            if (!newTab) {
-                throw new Error("Failed to open download in a new tab. Pop-ups might be blocked.");
+            if (contentDisposition) {
+                const match = contentDisposition.match(/filename="?(.+?)"?$/);
+                if (match && match[1]) {
+                    fileName = match[1];
+                }
             }
+    
+            // 🔹 Create an invisible anchor tag and trigger a download
+            const a = document.createElement("a");
+            a.style.display = "none";  // Hide the element
+            a.href = url;
+            a.download = fileName;
+    
+            document.body.appendChild(a);
+            a.click();  // Programmatically trigger download
+            document.body.removeChild(a);  // Cleanup
     
             setTimeout(() => {
                 window.URL.revokeObjectURL(url);
@@ -77,7 +55,6 @@ export const useSettings = () => {
             setIsDownloading(false);
         }
     };
-    
     
     
     
