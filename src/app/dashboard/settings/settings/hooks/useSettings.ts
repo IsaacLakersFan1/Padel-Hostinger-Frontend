@@ -4,7 +4,7 @@ import { toastError } from "@/hooks/useToastError";
 export const useSettings = () => {
     const [isDownloading, setIsDownloading] = useState(false);
     const { showToastError } = toastError();
-    const token = localStorage.getItem("PadelToken");
+    // const token = localStorage.getItem("PadelToken");
     
 
     // const downloadDB = async () => {
