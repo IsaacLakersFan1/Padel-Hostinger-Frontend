@@ -1,7 +1,7 @@
 import axios from "axios"
 import { toastError } from "@/hooks/useToastError"
 import API_URL from "@/utils/apiConfig"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Match } from "@/app/dashboard/matches/interfaces/Matches"
 
 export const useMatches = () => {
@@ -13,11 +13,12 @@ export const useMatches = () => {
 
     const getMatchesByRun = async () => {
         try {
-            await axios.get(`${API_URL}/matches/get-matches-by-run`, {
+            const response = await axios.get(`${API_URL}/matches/get-matches-by-run`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
+            setMatches(response.data)
         } catch (error) {
             showToastError("Error fetching matches")
         }
@@ -25,11 +26,12 @@ export const useMatches = () => {
 
     const getMatchById = async (id: string) => {
         try {
-            await axios.get(`${API_URL}/matches/get-match-by-id/${id}`, {
+            const response = await axios.get(`${API_URL}/matches/get-match-by-id/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
+            setMatch(response.data)
         } catch (error) {
             showToastError("Error fetching match")
         }
