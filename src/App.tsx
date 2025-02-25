@@ -10,6 +10,7 @@ import MatchesPage from './app/dashboard/matches/MatchesPage'
 import { PlayerStats } from './app/dashboard/players/components/playerStats/PlayerStats'
 import { RankingsPage } from './app/dashboard/rankings/RankingsPage'
 import { SettingsPage } from './app/dashboard/settings/settings/SettingsPage'
+import { MatchesSettings } from './app/dashboard/settings/matches/MatchesSettings'
 // import { ThemeDebug } from "@/components/ThemeDebug"
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/dashboard/players/:playerId" element={<PlayerStats />} />
           <Route path="/dashboard/rankings" element={<RankingsPage />} />
           <Route path="/dashboard/settings" element={<SettingsPage />} />
+          <Route path="/dashboard/settings/matches" element={<MatchesSettings />} />
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>

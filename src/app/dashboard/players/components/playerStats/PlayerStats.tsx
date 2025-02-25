@@ -82,14 +82,14 @@ const StatsCard = ({
   totalMatches: number;
   winPercentage: string;
 }) => (
-  <Card className="flex flex-col w-full sm:w-8/12 lg:w-3/12">
+  <Card className="flex flex-col w-full sm:w-5/12 mt-4 sm:mx-4">
     <CardHeader className="items-center pb-0">
       <CardTitle>Player Stats</CardTitle>
     </CardHeader>
     <CardContent className="flex-1 pb-0">
       <ChartContainer
         config={WIN_LOSS_CHART_CONFIG}
-        className="mx-auto aspect-square max-h-[400px] sm:max-h-[300px]"
+        className="mx-auto aspect-square max-h-[400px] sm:max-h-[400px]"
       >
         <PieChart>
           <ChartTooltip
@@ -142,7 +142,7 @@ const EloCard = ({
   chartData: Array<{ match: string; elo: number }>;
   currentElo: number;
 }) => (
-  <Card>
+  <Card className="flex flex-col w-full sm:w-5/12 mt-4 sm:mx-4">
     <CardHeader className="items-center pb-0 mb-4">
       <CardTitle>ELO Points</CardTitle>
     </CardHeader>
@@ -222,29 +222,31 @@ export const PlayerStats = () => {
             {playerStats.player.name}
           </h1>
           <img
-          src={`../../../../../../../public/${playerStats.player.imageUrl}.jpeg`}
-          alt={playerStats.player.name}
-          className="w-54 h-54 rounded-full mx-auto mb-6"
-          onError={(e) => {
-            e.currentTarget.onerror = null; // Prevent infinite loop
-            e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
-          }}
-        />
+            src={`../../../../../../../public/${playerStats.player.imageUrl}.jpeg`}
+            alt={playerStats.player.name}
+            className="w-54 h-54 rounded-full mx-auto mb-6"
+            onError={(e) => {
+              e.currentTarget.onerror = null; // Prevent infinite loop
+              e.currentTarget.src = "https://github.com/shadcn.png"; // Fallback image
+            }}
+          />
         </div>
       </div>
 
-      <StatsCard
-        chartData={chartData.winLossChartData}
-        totalMatches={playerStats.totalMatches}
-        winPercentage={chartData.winPercentage}
-      />
+      <section className="flex flex-col md:flex-row  justify-center">
 
-      <div className="w-full max-w-md mt-4">
+          <StatsCard
+          chartData={chartData.winLossChartData}
+          totalMatches={playerStats.totalMatches}
+          winPercentage={chartData.winPercentage}
+        />
+
+
         <EloCard
           chartData={chartData.eloChartData}
           currentElo={chartData.currentElo}
         />
-      </div>
+      </section>
     </>
   );
 };

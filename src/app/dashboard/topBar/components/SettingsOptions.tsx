@@ -33,7 +33,7 @@ export function SettingsOptions() {
             <Users />
             <span>Players</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate('/dashboard/settings/matches')}>
             <Trophy />
             <span>Matches</span>
           </DropdownMenuItem>
