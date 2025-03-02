@@ -24,7 +24,7 @@ import { useState, useEffect } from "react";
 import { Match } from "@/app/dashboard/matches/interfaces/Matches";
 
 export const EditMatch = (props: EditMatchProps) => {
-  const { getMatchById, updateMatch, match, players } = props;
+  const { updateMatch, match, players } = props;
   const [temporalMatch, setTemporalMatch] = useState<Match>(match);
 
   useEffect(() => {
