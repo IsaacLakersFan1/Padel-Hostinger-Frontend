@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { TopBar } from "../../topBar/TopBar";
 import { CreateMatch } from "./components/CreateMatch";
 import { MatchCard } from "./components/MatchCard";
@@ -11,13 +10,10 @@ export const MatchesSettings = () => {
     match,
     getMatchesByRun,
     getMatchById,
-    createMatch,
     updateMatch,
-    run,
     runs,
     getAllRuns,
     players,
-    getAllPlayers
   } = useMatches();
 
   return (
