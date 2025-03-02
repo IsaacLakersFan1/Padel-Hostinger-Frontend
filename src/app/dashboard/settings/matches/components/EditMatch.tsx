@@ -20,12 +20,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Match } from "@/app/dashboard/matches/interfaces/Matches";
 
 export const EditMatch = (props: EditMatchProps) => {
-  const { updateMatch, match, players } = props;
+  const { getMatchById, updateMatch, match, players } = props;
   const [temporalMatch, setTemporalMatch] = useState<Match>(match);
+
+  useEffect(() => {
+    setTemporalMatch(match);
+  }, [match]);
 
   return (
     <>

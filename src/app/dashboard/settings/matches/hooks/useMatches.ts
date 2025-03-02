@@ -31,7 +31,7 @@ export const useMatches = () => {
 
     const getMatchById = async (id: string) => {
         try {
-            const response = await axios.post(`${API_URL}/api/matches/get-match-by-id/`, {id: parseInt(id)}, {
+            const response = await axios.post(`${API_URL}/api/matches/get-match-by-id/`, {matchId: parseInt(id)}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

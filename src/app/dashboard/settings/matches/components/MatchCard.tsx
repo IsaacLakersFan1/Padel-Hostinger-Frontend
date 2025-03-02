@@ -51,7 +51,13 @@ export const MatchCard = ({ matches, getMatchById, updateMatch, match, players }
                   </Badge>
                 </div>
                 <div className="flex items-center gap-2 justify-center w-full">
-                  <EditMatch id={match.id} getMatchById={getMatchById} updateMatch={updateMatch} match={match} players={players} />
+                  <EditMatch 
+                    id={match.id} 
+                    getMatchById={getMatchById} 
+                    updateMatch={updateMatch} 
+                    match={match} 
+                    players={players} 
+                  />
                 </div>
               </section>
             </div>
