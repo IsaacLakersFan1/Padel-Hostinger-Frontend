@@ -17,6 +17,7 @@ export interface Match {
     player2: Player;
     player3: Player;
     player4: Player;
+    run: number;
 }
 
 export interface Player {
